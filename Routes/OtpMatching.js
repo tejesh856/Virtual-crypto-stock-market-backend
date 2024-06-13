@@ -47,7 +47,11 @@ router.post(
           await user.findByIdAndUpdate(req.payload._id, {
             otp: { iv: null, encryptedData: null, expiry: null },
           });
-          res.clearCookie("otpToken");
+          res.clearCookie("otpToken", {
+        httpOnly: true,
+        secure: true, // Ensure secure is true when serving over HTTPS
+        sameSite: "None",
+      });
           console.log(req.payload._id);
           const otpmatchToken = await generateotpmatching(req.payload._id);
           console.log(otpmatchToken);
