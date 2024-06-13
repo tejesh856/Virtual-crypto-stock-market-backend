@@ -6,7 +6,11 @@ router.delete(
   async (req, res) => {
     try {
       if (req.cookies.authToken) {
-        res.clearCookie("authToken");
+        res.clearCookie("authToken", {
+        httpOnly: true,
+        secure: true, // Ensure this is true when serving over HTTPS
+        sameSite: "None",
+      });
         return res.status(200).send({
           success: true,
           message: "User Logged Out Successfully.",
