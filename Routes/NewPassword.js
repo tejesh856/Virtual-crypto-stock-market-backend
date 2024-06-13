@@ -76,7 +76,11 @@ router.post(
         { password: existuser.password },
         { password: secpassword }
       );
-      res.clearCookie("otpmatchToken");
+      res.clearCookie("otpmatchToken", {
+        httpOnly: true,
+        secure: true, // Ensure secure is true when serving over HTTPS
+        sameSite: "None",
+      });
       res
         .status(200)
         .json({ success: true, message: "New Password Created successfully." });
