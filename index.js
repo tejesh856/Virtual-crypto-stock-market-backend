@@ -14,7 +14,7 @@ mongodb()
     removeExpiredOTP();
     app.use(
       cors({
-        origin: "http://localhost:3000", // Allow requests from localhost:3000
+        origin: "https://virtual-crypto-stock-market.vercel.app", // Allow requests from localhost:3000
         credentials: true, // Enable sending cookies
       })
     );
