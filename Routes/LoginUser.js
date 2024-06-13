@@ -54,6 +54,8 @@ router.post(
       const cookieOptions = {
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
+        secure: true, // Ensure this is true when serving over HTTPS
+        sameSite: "None",
       };
       res.cookie("authToken", authToken, cookieOptions);
       let userPurchase = await purchase.findOne({ UserId: userData._id });
