@@ -89,6 +89,8 @@ router.post(
         const cookieOptions = {
           httpOnly: true,
           maxAge: 10 * 60 * 1000,
+          secure: true, // Ensure this is true when serving over HTTPS
+          sameSite: "None",
         };
         res.cookie("otpToken", otpToken, cookieOptions);
         console.log(req.cookies.otpToken);
